@@ -4,42 +4,37 @@
 
 ## What does this do?
 
-The `fileType` variable is used to detect the file type of a given file. This is done by checking if the file extension matches any of the extensions specified in the `config.fileTypes` array. If a match is found, the corresponding file type object is returned.
+The `fileType` function detects the file type of a file based on its extension. It takes a file extension as an argument and returns the corresponding file type object.
 
 ## Why should I use this?
 
-File type detection is useful for a variety of purposes, such as:
+The `fileType` function can be used to determine the type of a file before processing it. This can be useful for tasks such as:
 
-* Determining how to process a file
-* Displaying the correct icon for a file
-* Providing information about a file
+* Opening the file in the correct application
+* Converting the file to a different format
+* Applying the appropriate security measures
 
 ## Prerequisites
 
-There are no prerequisites for using this code.
+There are no prerequisites for using the `fileType` function.
 
 ## How to use this
 
-To use this code, simply call the `fileType` function with the file extension as the argument. The function will return the corresponding file type object, or `null` if no match is found.
+To use the `fileType` function, simply pass the file extension as an argument to the function. The function will return the corresponding file type object.
 
-Here is an example of how to use this code:
+For example, the following code would return the file type object for a file with the extension `.txt`:
 
 ```javascript
-const fileType = require('file-type');
+const fileType = require('doc-detective-core/utils').fileType;
 
-const fileExtension = 'txt';
-const fileTypeObject = fileType(fileExtension);
+const txtFileType = fileType('.txt');
 
-console.log(fileTypeObject);
+console.log(txtFileType); // { name: 'Text', extensions: ['.txt'] }
 ```
 
-Output:
+## Gotchas
 
-```
-{
-  ext: 'txt',
-  mime: 'text/plain'
-}
-```
+* The `fileType` function only supports a limited number of file extensions. If the file extension is not recognized, the function will return `null`.
+* The `fileType` function does not take into account the file's contents. It is possible for a file to have an incorrect extension.
   
   
