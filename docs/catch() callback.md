@@ -1,52 +1,64 @@
 
   
-   # **checkLink**
+   # **httpRequest.js**
 
 ## What does this do?
 
-The `checkLink` method checks if a given URL is valid and returns the status code of the URL.
+The `httpRequest.js` file contains a function that makes an HTTP request to a given URL. The function takes a URL and an optional options object as arguments. The options object can contain the following properties:
+
+* `method`: The HTTP method to use, such as "GET", "POST", "PUT", or "DELETE".
+* `headers`: An object containing the HTTP headers to send with the request.
+* `body`: The body of the request, which can be a string, a Buffer, or a stream.
+* `timeout`: The maximum amount of time to wait for the request to complete, in milliseconds.
 
 ## Why should I use this?
 
-This method can be used to check if a URL is valid before attempting to access it. This can be useful for preventing errors and improving the user experience.
+The `httpRequest` function can be used to make HTTP requests from your Node.js applications. This can be useful for a variety of purposes, such as:
+
+* Fetching data from a web API
+* Posting data to a web service
+* Updating a resource on a web server
+* Deleting a resource from a web server
 
 ## Prerequisites
 
-There are no prerequisites for using this method.
+To use the `httpRequest` function, you will need to have Node.js installed on your computer. You can download Node.js from the Node.js website.
 
 ## How to use this
 
-To use this method, simply pass the URL you want to check as the first argument. The method will return the status code of the URL.
+To use the `httpRequest` function, simply import it into your Node.js application and call it with the appropriate arguments. For example, the following code makes a GET request to the Google homepage:
 
-Here is an example of how to use this method:
+```javascript
+const httpRequest = require('./httpRequest');
 
-```ts
-const url = 'https://www.google.com';
-const status = checkLink(url);
-
-if (status === 200) {
-  // The URL is valid
-} else {
-  // The URL is not valid
-}
+httpRequest('https://www.google.com', (error, response, body) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(body);
+  }
+});
 ```
 
-## Additional information
+The `httpRequest` function returns a Promise, so you can also use it with async/await. For example, the following code does the same thing as the previous example, but uses async/await:
 
-The `checkLink` method can also be used to check if a URL is accessible from a specific IP address. To do this, simply pass the IP address as the second argument to the method.
+```javascript
+const httpRequest = require('./httpRequest');
 
-Here is an example of how to use this method to check if a URL is accessible from a specific IP address:
-
-```ts
-const url = 'https://www.google.com';
-const ipAddress = '127.0.0.1';
-const status = checkLink(url, ipAddress);
-
-if (status === 200) {
-  // The URL is accessible from the specified IP address
-} else {
-  // The URL is not accessible from the specified IP address
+async function main() {
+  try {
+    const response = await httpRequest('https://www.google.com');
+    console.log(response.body);
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+main();
 ```
+
+## Conclusion
+
+The `httpRequest` function is a versatile tool that can be used to make HTTP requests from your Node.js applications. It is easy to use and can be used for a variety of purposes.
   
   
