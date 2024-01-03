@@ -1,47 +1,56 @@
 
   
-   # **{{Document Title}}**
+   # **Test Coverage Analysis**
 
 ## What does this do?
 
-The `analysis.js` file contains a function that takes an object as an argument and checks if the object's line, text, and indexInFile properties match the properties of a given matchObject.
+The `checkTestCoverage` function analyzes the test coverage of a set of files. It identifies which lines of code are covered by tests and which lines are not. This information can be used to improve the quality of the codebase by ensuring that all code is adequately tested.
 
 ## Why should I use this?
 
-This function can be used to compare two objects and determine if they are the same. This can be useful for a variety of purposes, such as checking if a file has been modified or if two objects are equivalent.
+Test coverage analysis is an important tool for ensuring the quality of a codebase. By identifying which lines of code are not covered by tests, developers can prioritize writing tests for those areas of the code that are most likely to contain bugs. This can help to prevent defects from being introduced into the codebase and can also help to improve the overall reliability of the software.
 
-## Prequsites
+## Prerequisites
 
-There are no prerequisites for using this function.
+To use the `checkTestCoverage` function, you will need to have the following prerequisites:
+
+* A set of files to analyze.
+* A configuration file that specifies the file types to be analyzed and the test coverage criteria to be used.
 
 ## How to use this
 
-To use this function, simply pass an object as an argument to the function. The function will then return a boolean value indicating whether or not the object's properties match the properties of the matchObject.
+To use the `checkTestCoverage` function, follow these steps:
 
-Here is an example of how to use this function:
+1. Create a configuration file that specifies the file types to be analyzed and the test coverage criteria to be used.
+2. Call the `checkTestCoverage` function with the configuration file and the set of files to be analyzed.
+3. The function will return a test coverage report that identifies which lines of code are covered by tests and which lines are not.
 
-```
-const object1 = {
-  line: 1,
-  text: 'Hello, world!',
-  indexInFile: 0
+## Example
+
+The following example shows how to use the `checkTestCoverage` function to analyze the test coverage of a set of files:
+
+```javascript
+const config = {
+  fileTypes: [
+    {
+      extensions: [".js"],
+      testStartStatementOpen: "describe(",
+      testStartStatementClose: ")",
+      testIgnoreStatement: "@ignore",
+      testEndStatement: "}",
+      stepStatementOpen: "it(",
+      stepStatementClose: ")",
+    },
+  ],
 };
 
-const object2 = {
-  line: 1,
-  text: 'Hello, world!',
-  indexInFile: 0
-};
+const files = ["file1.js", "file2.js"];
 
-const result = compareObjects(object1, object2);
+const testCoverage = checkTestCoverage(config, files);
 
-console.log(result); // true
+console.log(testCoverage);
 ```
 
-In this example, the two objects are the same, so the function returns true.
-
-## Conclusion
-
-The `analysis.js` file contains a useful function that can be used to compare two objects and determine if they are the same. This function can be used for a variety of purposes, such as checking if a file has been modified or if two objects are equivalent.
+The output of the `checkTestCoverage` function will be a test coverage report that identifies which lines of code are covered by tests and which lines are not. This information can be used to improve the quality of the codebase by ensuring that all code is adequately tested.
   
   
