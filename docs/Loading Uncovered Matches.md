@@ -4,7 +4,7 @@
 
 ## What does this do?
 
-The `getUncoveredMatches` function is used to load an array with uncovered matches. It iterates over the keys of the `file.markup` object and finds the corresponding `markConfig` object. If the `mark` is included in the `includeInSuggestions` array, it adds the uncovered matches for that mark to the `uncoveredMatches` array.
+The `getUncoveredMatches` function is used to load an array with uncovered matches. It iterates over the keys of the `file.markup` object and finds the markup configuration for each key. If the markup configuration is found, it checks if the markup is included in the `includeInSuggestions` array. If it is, it adds the uncovered matches for that markup to the `uncoveredMatches` array.
 
 ## Why should I use this?
 
@@ -12,65 +12,74 @@ The `getUncoveredMatches` function is useful for finding all of the uncovered ma
 
 ## Prerequisites
 
-Before using the `getUncoveredMatches` function, you must first:
+Before using the `getUncoveredMatches` function, you must have the following:
 
-1.  Load the `file` object.
-2.  Load the `config` object.
+* A configuration object that specifies the file types and markup types to be included in the suggestions.
+* A file object that contains the markup for the file.
 
 ## How to use this
 
-To use the `getUncoveredMatches` function, simply call it with the following arguments:
+To use the `getUncoveredMatches` function, you must:
 
-```
-getUncoveredMatches(config, file)
-```
-
-The function will return an array of uncovered matches.
+1. Create a configuration object that specifies the file types and markup types to be included in the suggestions.
+2. Create a file object that contains the markup for the file.
+3. Call the `getUncoveredMatches` function with the configuration object and the file object as arguments.
+4. The function will return an array of uncovered matches.
 
 ## Example
 
-The following code shows how to use the `getUncoveredMatches` function:
+The following example shows how to use the `getUncoveredMatches` function:
 
 ```
 const config = {
-  suggestTests: {
-    markup: ['TODO', 'FIXME'],
-  },
   fileTypes: [
     {
       extensions: ['.js'],
       markup: [
         {
-          name: 'TODO',
-          actions: ['Add test'],
-        },
-        {
-          name: 'FIXME',
-          actions: ['Fix bug'],
-        },
-      ],
-    },
+          name: 'markdown',
+          actions: [
+            {
+              name: 'Add a code sample',
+              description: 'Adds a code sample to the documentation.'
+            },
+            {
+              name: 'Add a link to the documentation',
+              description: 'Adds a link to the documentation for the method or class.'
+            }
+          ]
+        }
+      ]
+    }
   ],
+  suggestTests: {
+    markup: ['markdown']
+  }
 };
 
 const file = {
   file: '/Users/andrewvanbeek/dev-docs-work/clients/doc-detective-core/src/suggest.js',
   markup: {
-    TODO: [
-      {
-        line: 10,
-        indexInFile: 20,
-        text: 'Add test for this function.',
-      },
-    ],
-    FIXME: [
-      {
-        line: 20,
-        indexInFile: 40,
-        text: 'Fix this bug.',
-      },
-    ],
-  },
+    markdown: {
+      uncoveredMatches: [
+        {
+          line: 10,
+          indexInFile: 200,
+          type: 'markdown',
+          actions: [
+            {
+              name: 'Add a code sample',
+              description: 'Adds a code sample to the documentation.'
+            },
+            {
+              name: 'Add a link to the documentation',
+              description: 'Adds a link to the documentation for the method or class.'
+            }
+          ]
+        }
+      ]
+    }
+  }
 };
 
 const uncoveredMatches = getUncoveredMatches(config, file);
@@ -78,25 +87,11 @@ const uncoveredMatches = getUncoveredMatches(config, file);
 console.log(uncoveredMatches);
 ```
 
-The output of the above code will be:
+The output of the above example will be an array of uncovered matches. Each match will contain the following information:
 
-```
-[
-  {
-    line: 10,
-    indexInFile: 20,
-    text: 'Add test for this function.',
-    type: 'TODO',
-    actions: ['Add test'],
-  },
-  {
-    line: 20,
-    indexInFile: 40,
-    text: 'Fix this bug.',
-    type: 'FIXME',
-    actions: ['Fix bug'],
-  },
-]
-```
+* The line number of the match.
+* The index of the match in the file.
+* The type of match.
+* The actions that can be taken to address the match.
   
   
