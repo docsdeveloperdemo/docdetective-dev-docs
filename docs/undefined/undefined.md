@@ -3,29 +3,45 @@
    # **{{Document Title}}**
 
 ## What does this do?
-This method checks if the given object matches the matchObject.
+
+The `analysis.js` file contains a function that takes an object as an argument and checks if the object's line, text, and indexInFile properties match the properties of a given matchObject.
 
 ## Why should I use this?
-This method is useful for finding objects in an array that match a certain criteria.
 
-## Prerequisites
-None.
+This function can be used to compare two objects and determine if they are the same. This can be useful for a variety of purposes, such as checking if a file has been modified or if two objects are equivalent.
+
+## Prequsites
+
+There are no prerequisites for using this function.
 
 ## How to use this
-To use this method, pass the object you want to check as the first argument and the matchObject as the second argument. The method will return true if the object matches the matchObject, and false otherwise.
 
-For example, the following code checks if the object `{ line: 1, text: "Hello, world!", indexInFile: 0 }` matches the matchObject `{ line: 1, text: "Hello, world!" }`.
+To use this function, simply pass an object as an argument to the function. The function will then return a boolean value indicating whether or not the object's properties match the properties of the matchObject.
+
+Here is an example of how to use this function:
 
 ```
-const object = { line: 1, text: "Hello, world!", indexInFile: 0 };
-const matchObject = { line: 1, text: "Hello, world!" };
+const object1 = {
+  line: 1,
+  text: 'Hello, world!',
+  indexInFile: 0
+};
 
-const result = objectMatches(object, matchObject);
+const object2 = {
+  line: 1,
+  text: 'Hello, world!',
+  indexInFile: 0
+};
+
+const result = compareObjects(object1, object2);
 
 console.log(result); // true
 ```
 
-## Additional information
-The `objectMatches` method can be used to find objects in an array that match a certain criteria. This can be useful for a variety of tasks, such as filtering data or finding duplicate objects.
+In this example, the two objects are the same, so the function returns true.
+
+## Conclusion
+
+The `analysis.js` file contains a useful function that can be used to compare two objects and determine if they are the same. This function can be used for a variety of purposes, such as checking if a file has been modified or if two objects are equivalent.
   
   
