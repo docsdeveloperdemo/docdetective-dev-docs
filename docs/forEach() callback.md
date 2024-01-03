@@ -1,49 +1,64 @@
 
   
-   # **File System Utilities**
+   # **httpRequest**
 
 ## What does this do?
 
-The `utils.js` file contains a collection of utility functions that are used throughout the Doc Detective core library. These functions provide various functionalities such as reading files and directories, checking file types, and filtering files based on specific criteria.
+The `httpRequest` method is used to make an HTTP request to a specified URL. It can be used to retrieve data from a server, or to send data to a server.
 
 ## Why should I use this?
 
-The utility functions in this file can be useful for developers who are working on projects that involve reading and processing files and directories. These functions can help to simplify and streamline common file-related tasks, making it easier to write efficient and maintainable code.
+The `httpRequest` method is a convenient way to make HTTP requests from your code. It is easy to use and can be used to make a variety of different types of requests.
 
 ## Prerequisites
 
-To use the utility functions in this file, you will need to have Node.js installed on your system. You will also need to have the `fs` module installed, which is a core Node.js module that provides file system-related functionality.
+Before you can use the `httpRequest` method, you will need to import the `httpRequest` module. You can do this by adding the following line to your code:
+
+```
+import { httpRequest } from '@doc-detective/core';
+```
 
 ## How to use this
 
-To use the utility functions in this file, you can import them into your own code using the following syntax:
+To use the `httpRequest` method, you will need to provide the following information:
 
-```javascript
-const { readdirSync, statSync, isFile, isDir } = require('doc-detective-core/src/utils');
+* The URL of the resource you want to request
+* The HTTP method you want to use (e.g., GET, POST, PUT, DELETE)
+* The body of the request (if applicable)
+* The headers you want to send with the request (if applicable)
+
+You can then use the `httpRequest` method to make the request. The method will return a promise that resolves to the response from the server.
+
+Here is an example of how to use the `httpRequest` method to make a GET request to a server:
+
+```
+const response = await httpRequest({
+  url: 'https://example.com/api/data',
+  method: 'GET',
+});
+
+console.log(response.data);
 ```
 
-Once you have imported the utility functions, you can use them in your code as needed. For example, the following code uses the `readdirSync` function to read the contents of a directory:
+The `response` object will contain the following properties:
 
-```javascript
-const files = readdirSync('path/to/directory');
-```
+* `data`: The data that was returned from the server
+* `status`: The HTTP status code of the response
+* `headers`: The headers that were returned from the server
 
-The `statSync` function can be used to check the file type of a file or directory:
+## Expected Results
 
-```javascript
-const isFile = statSync('path/to/file').isFile();
-const isDir = statSync('path/to/directory').isDirectory();
-```
+The expected results of using the `httpRequest` method will vary depending on the request that you make. For example, if you make a GET request to a server, you can expect to receive the data that is stored at the specified URL. If you make a POST request to a server, you can expect to receive a response that indicates whether or not the request was successful.
 
-The `isFile` and `isDir` functions can be used to filter files and directories based on their type:
+## Troubleshooting
 
-```javascript
-const files = readdirSync('path/to/directory').filter(isFile);
-const dirs = readdirSync('path/to/directory').filter(isDir);
-```
+If you are having trouble using the `httpRequest` method, there are a few things you can check:
 
-## Conclusion
+* Make sure that you have imported the `httpRequest` module correctly.
+* Make sure that you are providing the correct URL for the resource you want to request.
+* Make sure that you are using the correct HTTP method for the request you want to make.
+* Make sure that you are sending the correct body and headers with the request (if applicable).
 
-The utility functions in the `utils.js` file can be a valuable resource for developers who are working on projects that involve reading and processing files and directories. These functions can help to simplify and streamline common file-related tasks, making it easier to write efficient and maintainable code.
+If you are still having trouble, you can contact the developers of the `httpRequest` module for help.
   
   
