@@ -1,56 +1,67 @@
 
   
-   # **checkLink**
+   # **httpRequest**
 
 ## What does this do?
 
-The `checkLink` method checks if a given URL is valid and returns the status code of the URL.
+The `httpRequest` method is used to make an HTTP request to a specified URL. It takes a single argument, which is an object that contains the following properties:
+
+* `url`: The URL of the resource to which the request is being made.
+* `method`: The HTTP method to use for the request. This can be one of the following: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `TRACE`, or `CONNECT`.
+* `headers`: An object containing the headers to be sent with the request.
+* `body`: The body of the request. This can be a string, a Buffer, or a stream.
 
 ## Why should I use this?
 
-This method can be used to check if a URL is valid before attempting to access it. This can be useful for preventing errors and improving the user experience.
+The `httpRequest` method is a convenient way to make HTTP requests from your code. It handles all of the low-level details of making the request, such as setting up the connection, sending the request, and receiving the response.
 
 ## Prerequisites
 
-There are no prerequisites for using this method.
+Before you can use the `httpRequest` method, you must first install the `doc-detective-core` package. You can do this by running the following command:
+
+```
+npm install doc-detective-core
+```
 
 ## How to use this
 
-To use the `checkLink` method, simply pass the URL you want to check as the first argument. The method will then return the status code of the URL.
-
-Here is an example of how to use the `checkLink` method:
+To use the `httpRequest` method, simply import it from the `doc-detective-core` package and then call it with the appropriate arguments. For example, the following code makes a GET request to the URL `https://www.google.com`:
 
 ```
-const checkLink = require('doc-detective-core/src/tests/checkLink');
+const { httpRequest } = require('doc-detective-core');
 
-const url = 'https://www.google.com';
-
-checkLink(url).then((res) => {
-  console.log(res.statusCode); // 200
+httpRequest({
+  url: 'https://www.google.com',
+  method: 'GET',
 });
 ```
 
-## Output
+The `httpRequest` method returns a Promise that resolves to the response from the server. The response object contains the following properties:
 
-The `checkLink` method will return a Promise that resolves to an object with the following properties:
+* `statusCode`: The HTTP status code of the response.
+* `headers`: An object containing the headers of the response.
+* `body`: The body of the response. This can be a string, a Buffer, or a stream.
 
-* `statusCode`: The status code of the URL.
+## Example
 
-## Additional information
-
-The `checkLink` method can also be used to check if a URL is accessible from a specific IP address. To do this, simply pass the IP address as the second argument to the method.
-
-Here is an example of how to use the `checkLink` method to check if a URL is accessible from a specific IP address:
+The following example shows how to use the `httpRequest` method to make a POST request to the URL `https://www.example.com/api/v1/users`. The request body is a JSON object that contains the user's name and email address.
 
 ```
-const checkLink = require('doc-detective-core/src/tests/checkLink');
+const { httpRequest } = require('doc-detective-core');
 
-const url = 'https://www.google.com';
-const ipAddress = '127.0.0.1';
-
-checkLink(url, ipAddress).then((res) => {
-  console.log(res.statusCode); // 200
+httpRequest({
+  url: 'https://www.example.com/api/v1/users',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+  }),
 });
 ```
+
+The `httpRequest` method will return a Promise that resolves to the response from the server. The response object will contain the HTTP status code, the headers, and the body of the response.
   
   
