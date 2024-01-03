@@ -1,63 +1,33 @@
 
   
-   # **Doc Detective Core**
+   # **{{Document Title}}**
 
 ## What does this do?
-
-The `suggest.js` file contains the logic for generating test actions from a given code snippet. It takes a code snippet as input and generates a list of test actions that can be used to test the code.
+This code defines a function that takes a list of matches and converts them into a list of steps for use in a testing framework. Each step represents an action to be performed, such as finding an element on the page, going to a URL, typing keys, or saving a screenshot. The function also adds additional information to each step, such as the selector for finding an element or the URL to visit.
 
 ## Why should I use this?
-
-The `suggest.js` file can be used to generate test actions for any code snippet, which can be helpful for developers who are writing tests for their code. It can also be used to generate test actions for code that is being used in a production environment, which can help to ensure that the code is working as expected.
+This code is useful for creating automated tests for web applications. It allows you to easily define a series of actions to be performed, and then execute those actions in a repeatable way. This can save time and effort when testing web applications, and can help to ensure that the applications are functioning as expected.
 
 ## Prerequisites
-
-In order to use the `suggest.js` file, you will need to have the following prerequisites:
-
-* Node.js installed on your system
-* The `doc-detective-core` package installed
+To use this code, you will need to have a basic understanding of JavaScript and the testing framework that you are using. You will also need to have access to the web application that you want to test.
 
 ## How to use this
+To use this code, you will need to import it into your testing framework and then call the `matchesToSteps` function. The function will take a list of matches as input and return a list of steps. You can then use the steps to create automated tests for your web application.
 
-To use the `suggest.js` file, you can follow these steps:
+Here is an example of how to use the code:
 
-1. Open a terminal window and navigate to the directory where the `suggest.js` file is located.
-2. Run the following command:
+```javascript
+import { matchesToSteps } from './utils.js';
 
-```
-node suggest.js [path to code snippet]
-```
+const matches = ['aria/button', 'https://www.example.com', 'Hello, world!'];
 
-3. The `suggest.js` file will generate a list of test actions for the code snippet.
+const steps = matchesToSteps(matches);
 
-## Example
-
-The following is an example of how the `suggest.js` file can be used to generate test actions for a code snippet:
-
-```
-// Code snippet
-const matches = [
-  {
-    type: "find",
-    value: "button"
-  },
-  {
-    type: "click",
-    value: "button"
-  }
-];
-
-// Generate test actions
-const actions = suggest.generateActions(matches);
-
-// Print test actions
-console.log(actions);
+console.log(steps);
 ```
 
-The output of the above code snippet will be a list of test actions that can be used to test the code snippet.
+The output of the code will be a list of steps, each of which represents an action to be performed. For example, the first step will be to find an element on the page with the selector `aria/button`. The second step will be to go to the URL `https://www.example.com`. The third step will be to type the keys `Hello, world!` into a text input field.
 
-## Conclusion
-
-The `suggest.js` file is a helpful tool for generating test actions for code snippets. It can be used by developers who are writing tests for their code or by developers who are using code in a production environment.
+You can then use the steps to create automated tests for your web application. For example, you could use the steps to test that the button is visible on the page, that the URL loads correctly, and that the text input field accepts the keys that you type.
   
   
