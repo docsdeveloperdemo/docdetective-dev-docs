@@ -4,27 +4,30 @@
 
 ## What does this do?
 
-The `fileType` constant is used to find the file type that corresponds to the given file extension. This is done by iterating over the list of file types and checking if the extension is included in the list of extensions for each file type.
+The `fileType` variable is used to find the file type of a given file extension. This is done by iterating over the `config.fileTypes` array and checking if the extension is included in the `extensions` array of each file type. If a match is found, the file type is returned.
 
 ## Why should I use this?
 
-The `fileType` constant is useful for determining the type of file that is being processed. This information can be used to perform different operations on the file, such as opening it with the appropriate application or converting it to a different format.
+This function is useful for determining the file type of a file so that it can be processed accordingly. For example, a text file can be opened in a text editor, while an image file can be opened in an image viewer.
 
 ## Prerequisites
 
-There are no prerequisites for using the `fileType` constant.
+There are no prerequisites for using this function.
 
 ## How to use this
 
-To use the `fileType` constant, simply import it from the `doc-detective-core` module and then use it to find the file type that corresponds to the given file extension.
+To use this function, simply pass the file extension as an argument. The function will return the file type if a match is found, or `null` if no match is found.
 
-```javascript
-const { fileType } = require('doc-detective-core');
+Here is an example of how to use this function:
 
-const extension = 'txt';
-const fileType = fileType.find((fileType) => fileType.extensions.includes(extension));
+```
+const fileType = getFileExtension('txt');
 
-console.log(fileType); // { name: 'Text File', extensions: ['.txt'] }
+if (fileType) {
+  // Open the file in a text editor
+} else {
+  // The file type is not supported
+}
 ```
   
   
