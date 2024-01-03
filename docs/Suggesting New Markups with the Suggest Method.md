@@ -16,26 +16,30 @@ Before using the `suggest` method, you must first create a file type object. Thi
 
 ## How to use this
 
-To use the `suggest` method, simply call it with the file type and markup name as arguments. The following code shows how to suggest a new markup for the `json` file type:
+To use the `suggest` method, simply call it with the file type and markup name as arguments. The following example shows how to suggest a new markup for the `JavaScript` file type:
 
 ```
-const fileType = createFileType('json');
-const markup = suggest(fileType, 'yaml');
+const fileType = createFileType('JavaScript');
+const markup = suggest(fileType, 'markdown');
 ```
 
-The `markup` variable will now contain a new file type object with the `yaml` markup added.
+The `markup` variable will now contain a new file type object with the `markdown` markup added.
 
 ## Example
 
-The following code shows how to use the `suggest` method to add a new markup to the `json` file type:
+The following example shows how to use the `suggest` method to add support for the `markdown` markup to the `JavaScript` file type:
 
 ```
-const fileType = createFileType('json');
-const markup = suggest(fileType, 'yaml');
+const fileType = createFileType('JavaScript');
+const markup = suggest(fileType, 'markdown');
 
-console.log(markup.name); // 'json-yaml'
+// Use the new file type to create a new document
+const document = createDocument(markup, 'My Document');
+
+// Save the document
+saveDocument(document, 'my-document.md');
 ```
 
-The output of the above code will be `json-yaml`, which is the name of the new file type with the `yaml` markup added.
+This will create a new markdown document with the title "My Document".
   
   
