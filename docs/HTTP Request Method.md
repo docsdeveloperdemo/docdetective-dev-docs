@@ -4,58 +4,58 @@
 
 ## What does this do?
 
-The `httpRequest` method sends an HTTP request to the specified URL and returns the response.
+The `httpRequest` method is used to make a request to a URL. It can be used to fetch data from a server, or to send data to a server.
 
 ## Why should I use this?
 
-The `httpRequest` method is useful for making HTTP requests to external APIs or services. It can be used to retrieve data, send data, or perform other operations.
+The `httpRequest` method is a convenient way to make HTTP requests from your code. It is easy to use and can be used to make a variety of different types of requests.
 
 ## Prerequisites
 
-To use the `httpRequest` method, you must have a valid API key. You can obtain an API key by creating an account on the Ned platform.
+Before you can use the `httpRequest` method, you will need to import the `httpRequest` module. You can do this by adding the following line to your code:
+
+```
+import { httpRequest } from '@doc-detective-core/src/tests/httpRequest.js';
+```
 
 ## How to use this
 
-To use the `httpRequest` method, you must first create an instance of the `Ned` class. You can then use the `httpRequest` method to send an HTTP request to the specified URL.
+To use the `httpRequest` method, you will need to provide the following information:
 
-The following code sample shows you how to use the `httpRequest` method:
+* The URL of the request
+* The method of the request (e.g. GET, POST, PUT, DELETE)
+* The headers of the request
+* The body of the request
 
-```javascript
-const ned = new Ned();
+You can then use the `httpRequest` method to make the request. The method will return a promise that resolves to the response from the server.
 
-const response = await ned.httpRequest({
-  url: 'https://example.com/api/v1/users',
+Here is an example of how to use the `httpRequest` method:
+
+```
+const response = await httpRequest({
+  url: 'https://example.com',
   method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: 'John Doe',
+  }),
 });
 
 console.log(response);
 ```
 
-The `httpRequest` method returns a promise that resolves to the HTTP response. The response object contains the following properties:
+The `response` object will contain the following information:
 
-* `status`: The HTTP status code.
-* `headers`: The HTTP headers.
-* `body`: The HTTP response body.
+* The status code of the response
+* The headers of the response
+* The body of the response
 
-You can use the `status`, `headers`, and `body` properties to access the information you need from the HTTP response.
+You can use the `response` object to access the data that you need from the server.
 
-## Example
+## Conclusion
 
-The following code sample shows you how to use the `httpRequest` method to retrieve data from an external API:
-
-```javascript
-const ned = new Ned();
-
-const response = await ned.httpRequest({
-  url: 'https://example.com/api/v1/users',
-  method: 'GET',
-});
-
-const users = response.body.users;
-
-console.log(users);
-```
-
-The `httpRequest` method is a powerful tool that can be used to make HTTP requests to external APIs or services. It can be used to retrieve data, send data, or perform other operations.
+The `httpRequest` method is a convenient way to make HTTP requests from your code. It is easy to use and can be used to make a variety of different types of requests.
   
   
