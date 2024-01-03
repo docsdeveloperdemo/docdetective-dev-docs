@@ -4,58 +4,54 @@
 
 ## What does this do?
 
-The `httpRequest` method is used to make a request to a URL. It can be used to fetch data from a server, or to send data to a server.
+The `httpRequest` method is used to make an HTTP request to a specified URL. It can be used to fetch data from a remote server, or to send data to a remote server.
 
 ## Why should I use this?
 
-The `httpRequest` method is a convenient way to make HTTP requests from your code. It is easy to use and can be used to make a variety of different types of requests.
+The `httpRequest` method is a convenient way to make HTTP requests from your code. It handles all of the low-level details of making an HTTP request, such as opening a socket, sending the request, and receiving the response.
 
 ## Prerequisites
 
-Before you can use the `httpRequest` method, you will need to import the `httpRequest` module. You can do this by adding the following line to your code:
-
-```
-import { httpRequest } from '@doc-detective-core/src/tests/httpRequest.js';
-```
+Before you can use the `httpRequest` method, you must have an internet connection. You must also have the `net` module installed.
 
 ## How to use this
 
-To use the `httpRequest` method, you will need to provide the following information:
+To use the `httpRequest` method, you must first create an instance of the `net` module. You can do this by calling the `require()` function:
 
-* The URL of the request
-* The method of the request (e.g. GET, POST, PUT, DELETE)
-* The headers of the request
-* The body of the request
-
-You can then use the `httpRequest` method to make the request. The method will return a promise that resolves to the response from the server.
-
-Here is an example of how to use the `httpRequest` method:
-
+```javascript
+const net = require('net');
 ```
-const response = await httpRequest({
-  url: 'https://example.com',
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    name: 'John Doe',
-  }),
+
+Once you have created an instance of the `net` module, you can use the `httpRequest` method to make an HTTP request. The `httpRequest` method takes two parameters:
+
+* The URL of the resource you want to request.
+* A callback function that will be called when the response is received.
+
+The callback function will be passed two parameters:
+
+* The response object.
+* The error object.
+
+If the request is successful, the response object will contain the data from the remote server. If the request fails, the error object will contain information about the error.
+
+Here is an example of how to use the `httpRequest` method to fetch data from a remote server:
+
+```javascript
+const net = require('net');
+
+const url = 'http://www.example.com';
+
+net.httpRequest(url, (response, error) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(response);
+  }
 });
-
-console.log(response);
 ```
-
-The `response` object will contain the following information:
-
-* The status code of the response
-* The headers of the response
-* The body of the response
-
-You can use the `response` object to access the data that you need from the server.
 
 ## Conclusion
 
-The `httpRequest` method is a convenient way to make HTTP requests from your code. It is easy to use and can be used to make a variety of different types of requests.
+The `httpRequest` method is a convenient way to make HTTP requests from your code. It handles all of the low-level details of making an HTTP request, such as opening a socket, sending the request, and receiving the response.
   
   
