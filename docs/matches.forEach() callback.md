@@ -1,72 +1,63 @@
 
   
-   # **{{Document Title}}**
+   # **Doc Detective Core**
 
 ## What does this do?
-This function iterates through an array of matches and checks for duplicates. It then handles lines separately, escaping special characters in the matches to create a regular expression. The function counts the number of occurrences of each match in the content and stores the line number, index in the file, and the text of each match in an object. It then checks if each match is covered or uncovered by the coverage data and updates the coverage data accordingly.
+
+The `suggest.js` file contains the logic for generating test actions from a given code snippet. It takes a code snippet as input and generates a list of test actions that can be used to test the code.
 
 ## Why should I use this?
-This function is useful for analyzing code coverage and identifying which lines and matches are covered or uncovered by tests. It can be used to improve test coverage and ensure that all code is tested.
+
+The `suggest.js` file can be used to generate test actions for any code snippet, which can be helpful for developers who are writing tests for their code. It can also be used to generate test actions for code that is being used in a production environment, which can help to ensure that the code is working as expected.
 
 ## Prerequisites
-To use this function, you will need to have the following:
 
-* An array of matches to check for duplicates
-* The content to search for the matches in
-* Coverage data for the code
+In order to use the `suggest.js` file, you will need to have the following prerequisites:
+
+* Node.js installed on your system
+* The `doc-detective-core` package installed
 
 ## How to use this
-To use this function, you can follow these steps:
 
-1. Call the function with the array of matches, the content, and the coverage data as arguments.
-2. The function will iterate through the matches and check for duplicates.
-3. It will then handle lines separately, escaping special characters in the matches to create a regular expression.
-4. The function will count the number of occurrences of each match in the content and store the line number, index in the file, and the text of each match in an object.
-5. It will then check if each match is covered or uncovered by the coverage data and update the coverage data accordingly.
+To use the `suggest.js` file, you can follow these steps:
+
+1. Open a terminal window and navigate to the directory where the `suggest.js` file is located.
+2. Run the following command:
+
+```
+node suggest.js [path to code snippet]
+```
+
+3. The `suggest.js` file will generate a list of test actions for the code snippet.
 
 ## Example
-The following example shows how to use this function:
 
-```javascript
-const matches = ["foo", "bar", "baz"];
-const content = "This is some content that contains the matches foo, bar, and baz.";
-const coverageData = {
-  coveredLines: [],
-  uncoveredLines: [],
-  coveredMatches: [],
-  uncoveredMatches: [],
-};
+The following is an example of how the `suggest.js` file can be used to generate test actions for a code snippet:
 
-markCoverage(matches, content, coverageData);
+```
+// Code snippet
+const matches = [
+  {
+    type: "find",
+    value: "button"
+  },
+  {
+    type: "click",
+    value: "button"
+  }
+];
 
-console.log(coverageData);
+// Generate test actions
+const actions = suggest.generateActions(matches);
+
+// Print test actions
+console.log(actions);
 ```
 
-Output:
+The output of the above code snippet will be a list of test actions that can be used to test the code snippet.
 
-```json
-{
-  coveredLines: [1],
-  uncoveredLines: [],
-  coveredMatches: [
-    {
-      line: 1,
-      indexInFile: 16,
-      text: "foo",
-    },
-    {
-      line: 1,
-      indexInFile: 21,
-      text: "bar",
-    },
-    {
-      line: 1,
-      indexInFile: 26,
-      text: "baz",
-    },
-  ],
-  uncoveredMatches: [],
-}
-```
+## Conclusion
+
+The `suggest.js` file is a helpful tool for generating test actions for code snippets. It can be used by developers who are writing tests for their code or by developers who are using code in a production environment.
   
   
