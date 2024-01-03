@@ -1,53 +1,45 @@
 
   
-   # **File Analysis**
+   # undefined
 
 ## What does this do?
 
-The `analysis.js` file is responsible for analyzing files and extracting relevant information for documentation generation. It takes a file path and an extension as input and returns an object containing the extracted information.
+The `remoteJSON.forEach` method iterates over each element in the `remoteJSON` array and executes the provided callback function for each element. The callback function takes a single argument, which is the current element in the array.
+
+In this case, the callback function is an anonymous function that checks if the `id` property of the current element in the `remoteJSON` array matches the `id` property of the `statementJson` object. If the `id` properties match, the `idMatch` variable is set to `true`.
 
 ## Why should I use this?
 
-The `analysis.js` file can be used to automatically generate documentation for your codebase. This can save you time and effort, and ensure that your documentation is always up-to-date.
+The `remoteJSON.forEach` method can be used to iterate over an array and perform a specific action for each element in the array. In this case, the callback function is used to check if the `id` property of the current element in the `remoteJSON` array matches the `id` property of the `statementJson` object. This can be useful for finding a specific element in an array or for performing a specific action for each element in an array.
 
-## Prerequisites
+## Prequsites
 
-To use the `analysis.js` file, you will need to have the following installed:
-
-* Node.js
-* The `doc-detective-core` package
+There are no prerequisites for using the `remoteJSON.forEach` method.
 
 ## How to use this
 
-To use the `analysis.js` file, simply import it into your project and call the `analyzeFile()` function. The function will take a file path and an extension as input and return an object containing the extracted information.
+To use the `remoteJSON.forEach` method, you simply call the method on the `remoteJSON` array and pass in a callback function as the first argument. The callback function will be executed for each element in the array.
 
-Here is an example of how to use the `analysis.js` file:
+In the example code, the `remoteJSON.forEach` method is used to iterate over the `remoteJSON` array and check if the `id` property of the current element in the array matches the `id` property of the `statementJson` object. If the `id` properties match, the `idMatch` variable is set to `true`.
+
+Here is an example of how you could use the `remoteJSON.forEach` method to iterate over an array and print the value of each element to the console:
 
 ```javascript
-const analysis = require('doc-detective-core/analysis');
+const numbers = [1, 2, 3, 4, 5];
 
-const filePath = '/Users/andrewvanbeek/dev-docs-work/clients/doc-detective-core/src/analysis.js';
-const extension = 'js';
-
-const analysisResult = analysis.analyzeFile(filePath, extension);
-
-console.log(analysisResult);
+numbers.forEach((number) => {
+  console.log(number);
+});
 ```
 
-The `analysisResult` object will contain the following information:
+This code would print the following output to the console:
 
-* **File path:** The path to the file that was analyzed.
-* **Extension:** The extension of the file that was analyzed.
-* **File type:** The type of file that was analyzed.
-* **Methods:** A list of the methods that were found in the file.
-* **Classes:** A list of the classes that were found in the file.
-* **Properties:** A list of the properties that were found in the file.
-* **Constants:** A list of the constants that were found in the file.
-
-You can use this information to generate documentation for your codebase. For example, you could use the list of methods to create a table of contents for your documentation. You could also use the list of classes to create a class reference.
-
-## Conclusion
-
-The `analysis.js` file is a powerful tool that can be used to automatically generate documentation for your codebase. It can save you time and effort, and ensure that your documentation is always up-to-date.
+```
+1
+2
+3
+4
+5
+```
   
   
