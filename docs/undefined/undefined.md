@@ -3,31 +3,45 @@
    # **{{Document Title}}**
 
 ## What does this do?
-
-The `remoteJSON.forEach` method iterates over each specification in the `remoteJSON` array. For each specification, it calls the `spec.tests.forEach` method to iterate over each test in the `spec.tests` array. Inside the `spec.tests.forEach` method, it checks if the `test.id` property of the current test matches the `statementJson.id` property. If they match, it sets the `idMatch` variable to `true`.
+This function checks if a test ID matches the ID of a statement.
 
 ## Why should I use this?
-
-This code is used to check if a statement is present in a set of specifications. This can be useful for various purposes, such as validating that a statement is included in a set of tests, or for generating documentation for a statement.
+This function is used to determine if a test is relevant to a particular statement. This information can be used to filter tests and only run the ones that are relevant to the statement being analyzed.
 
 ## Prerequisites
-
-Before using this code, you must have the following:
-
-* A set of specifications in JSON format.
-* A statement in JSON format.
+None.
 
 ## How to use this
+To use this function, you must provide a test object and a statement object. The test object must have an `id` property, and the statement object must have an `id` property. The function will return `true` if the test ID matches the statement ID, and `false` otherwise.
 
-To use this code, follow these steps:
+Here is an example of how to use this function:
 
-1. Load the specifications into a JavaScript object.
-2. Load the statement into a JavaScript object.
-3. Call the `remoteJSON.forEach` method on the specifications object.
-4. Inside the `remoteJSON.forEach` method, call the `spec.tests.forEach` method on the current specification object.
-5. Inside the `spec.tests.forEach` method, check if the `test.id` property of the current test matches the `statementJson.id` property.
-6. If they match, set the `idMatch` variable to `true`.
+```javascript
+const test = {
+  id: '12345',
+  name: 'My test',
+  ...
+};
 
-The `idMatch` variable will be `true` if the statement is present in the set of specifications, and `false` otherwise.
+const statement = {
+  id: '12345',
+  type: 'function',
+  ...
+};
+
+const idMatch = spec.tests.forEach((test) => {
+  if (test.id && test.id === statementJson.id) idMatch = true;
+});
+
+if (idMatch) {
+  // The test is relevant to the statement.
+} else {
+  // The test is not relevant to the statement.
+}
+```
+
+## Additional notes
+- The `id` property of the test object and the `id` property of the statement object must be of the same type.
+- If either the test object or the statement object does not have an `id` property, the function will return `false`.
   
   
