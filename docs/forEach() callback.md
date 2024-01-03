@@ -1,81 +1,49 @@
 
   
-   # **Suggesting Uncovered Matches**
+   # **File System Utilities**
 
 ## What does this do?
 
-This code suggests uncovered matches for a given file. It iterates through the markup keys of the file, finds the corresponding markup configuration, and adds any uncovered matches to the list of uncovered matches.
+The `utils.js` file contains a collection of utility functions that are used throughout the Doc Detective core library. These functions provide various functionalities such as reading files and directories, checking file types, and filtering files based on specific criteria.
 
 ## Why should I use this?
 
-This code is useful for finding and suggesting uncovered matches in a file, which can help to improve the accuracy and completeness of the documentation.
+The utility functions in this file can be useful for developers who are working on projects that involve reading and processing files and directories. These functions can help to simplify and streamline common file-related tasks, making it easier to write efficient and maintainable code.
 
 ## Prerequisites
 
-To use this code, you will need to have the following:
-
-* A file with markup
-* A file type configuration object
-* A list of markup actions
+To use the utility functions in this file, you will need to have Node.js installed on your system. You will also need to have the `fs` module installed, which is a core Node.js module that provides file system-related functionality.
 
 ## How to use this
 
-To use this code, follow these steps:
-
-1. Import the `suggest` function from the `doc-detective-core` library.
-2. Call the `suggest` function with the following parameters:
-    * `file`: The file with markup.
-    * `fileType`: The file type configuration object.
-    * `actions`: The list of markup actions.
-3. The function will return a list of uncovered matches.
-
-## Example
-
-The following example shows how to use the `suggest` function to find and suggest uncovered matches for a file:
+To use the utility functions in this file, you can import them into your own code using the following syntax:
 
 ```javascript
-const suggest = require('doc-detective-core/suggest');
-
-const file = {
-  markup: {
-    bold: {
-      uncoveredMatches: [
-        {
-          text: 'This is bold text.',
-          start: 0,
-          end: 15,
-        },
-      ],
-    },
-  },
-};
-
-const fileType = {
-  markup: [
-    {
-      name: 'bold',
-      actions: [
-        {
-          name: 'makeBold',
-          description: 'Makes the selected text bold.',
-        },
-      ],
-    },
-  ],
-};
-
-const actions = [
-  {
-    name: 'makeBold',
-    description: 'Makes the selected text bold.',
-  },
-];
-
-const uncoveredMatches = suggest(file, fileType, actions);
-
-console.log(uncoveredMatches);
+const { readdirSync, statSync, isFile, isDir } = require('doc-detective-core/src/utils');
 ```
 
-The output of the above example will be a list of uncovered matches, which can then be used to improve the accuracy and completeness of the documentation.
+Once you have imported the utility functions, you can use them in your code as needed. For example, the following code uses the `readdirSync` function to read the contents of a directory:
+
+```javascript
+const files = readdirSync('path/to/directory');
+```
+
+The `statSync` function can be used to check the file type of a file or directory:
+
+```javascript
+const isFile = statSync('path/to/file').isFile();
+const isDir = statSync('path/to/directory').isDirectory();
+```
+
+The `isFile` and `isDir` functions can be used to filter files and directories based on their type:
+
+```javascript
+const files = readdirSync('path/to/directory').filter(isFile);
+const dirs = readdirSync('path/to/directory').filter(isDir);
+```
+
+## Conclusion
+
+The utility functions in the `utils.js` file can be a valuable resource for developers who are working on projects that involve reading and processing files and directories. These functions can help to simplify and streamline common file-related tasks, making it easier to write efficient and maintainable code.
   
   
