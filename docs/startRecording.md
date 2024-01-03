@@ -4,79 +4,89 @@
 
 ## What does this do?
 
-The `startRecording` function starts recording a video of the browser window. The video is saved to a file in the specified directory.
+The `startRecording` method starts recording a video of the user's screen. The video is saved to the file path specified in the `step` object.
 
 ## Why should I use this?
 
-You can use this function to record videos of your web application for testing or demonstration purposes.
+You should use this method if you want to record a video of the user's screen for debugging purposes.
 
 ## Prerequisites
 
-To use this function, you must have the following:
+Before using this method, you must have the following prerequisites:
 
-* A Puppeteer instance
-* A web page to record
+* An OBS WebSocket server running on your computer.
+* The OBS WebSocket client library installed.
 
 ## How to use this
 
-To use this function, call it with the following parameters:
+To use this method, you must first create a `step` object. The `step` object must contain the following properties:
 
-* `action`: An object that contains the following properties:
-    * `overwrite`: A boolean value that specifies whether to overwrite an existing file.
-    * `mediaDirectory`: The directory where the video file will be saved.
-    * `filename`: The name of the video file.
-    * `fps`: The frame rate of the video.
-    * `height`: The height of the video.
-    * `width`: The width of the video.
-* `page`: A Puppeteer page instance.
-* `config`: A configuration object that contains the following properties:
-    * `mediaDirectory`: The default directory where video files will be saved.
-    * `browserOptions`: The options that will be used to launch the Puppeteer browser.
+* `id`: A unique identifier for the step.
+* `filePath`: The file path to which the video should be saved.
 
-The function will return an object that contains the following properties:
+Once you have created the `step` object, you can call the `startRecording` method. The `startRecording` method will return a `result` object. The `result` object will contain the following properties:
 
-* `result`: An object that contains the status of the recording and a description of the result.
-* `videoDetails`: An object that contains the details of the video recording.
+* `status`: The status of the recording.
+* `description`: A description of the recording.
+
+If the recording was successful, the `status` property will be set to "PASS". If the recording failed, the `status` property will be set to "FAIL". The `description` property will contain a description of the error that occurred.
 
 ## Example
 
-The following example shows how to use the `startRecording` function:
+The following code shows you how to use the `startRecording` method:
 
 ```javascript
-async function startRecordingExample() {
-  const puppeteer = require('puppeteer');
-  const docDetective = require('doc-detective-core');
-
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-
-  const config = {
-    mediaDirectory: '/tmp/videos',
-    browserOptions: {
-      headless: false,
-      width: 1280,
-      height: 720,
-    },
+async function startRecording(config, step, driver) {
+  let result = {
+    status: "PASS",
+    description: "Started recording.",
   };
 
-  const action = {
-    overwrite: false,
-    mediaDirectory: '/tmp/videos',
-    filename: 'my-video.mp4',
-    fps: 30,
-    height: 720,
-    width: 1280,
-  };
+  // Validate step payload
+  isValidStep = validate("startRecording_v2", step);
+  if (!isValidStep.valid) {
+    result.status = "FAIL";
+    result.description = `Invalid step definition: ${isValidStep.errors}`;
+    return result;
+  }
 
-  const { result, videoDetails } = await docDetective.startRecording(action, page, config);
+  // Set filePath
+  if (!step.filePath) {
+    step.filePath = path.join(config.mediaDirectory, `${step.id}.mp4`);
+  }
 
-  console.log(result);
-  console.log(videoDetails);
+  try {
+    // TODO: JS-based in-browser recording
+    //   await driver.setTimeout({ script: 5000 })
+    //   const execResult = await driver.execute((a, b, c, d) => {
+    //     return 15
+    // }, 1, 2, 3, 4)
+    //   console.log(execResult);
+    // TODO: OBS-based native app recording
+    const obs = new OBSWebSocket();
+    // TODO: Set password from config
+    const { obsWebSocketVersion, negotiatedRpcVersion } = await obs.connect(
+      "ws://127.0.0.1:4455",
+      "doc-detective"
+    );
+    log(
+      config,
+      "debug",
+      `Connected to server ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`
+    );
 
-  await browser.close();
+    // TODO: Appium-based mobile recording
+    // await driver.startRecording(step.filePath);
+  } catch (error) {
+    // Couldn't save screenshot
+    result.status = "FAIL";
+    result.description = `Couldn't save screenshot. ${error}`;
+    return result;
+  }
+
+  // PASS
+  return result;
 }
-
-startRecordingExample();
 ```
   
   
