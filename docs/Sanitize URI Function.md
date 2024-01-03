@@ -4,26 +4,19 @@
 
 ## What does this do?
 
-The `sanitizeUri` function takes a URI (Uniform Resource Identifier) as input and returns a sanitized version of the URI. The sanitization process involves the following steps:
-
-1. Trimming any leading or trailing whitespace from the URI.
-2. If the URI does not include a protocol (e.g., "http://" or "https://"), the function adds the "https://" protocol to the beginning of the URI.
+The `sanitizeUri` function takes a URI (Uniform Resource Identifier) as input and returns a sanitized version of the URI.
 
 ## Why should I use this?
 
-The `sanitizeUri` function is useful for ensuring that URIs are in a consistent and valid format. This can be important for various reasons, such as:
-
-- Ensuring that URIs are properly formatted for use in web browsers or other applications.
-- Preventing potential security vulnerabilities caused by malformed URIs.
-- Facilitating the parsing and processing of URIs.
+The `sanitizeUri` function is useful for ensuring that URIs are in a consistent format and that they are safe to use in applications. For example, the function can be used to add the "https://" protocol to URIs that do not have a protocol specified, and it can also be used to remove any whitespace from URIs.
 
 ## Prerequisites
 
-There are no specific prerequisites for using the `sanitizeUri` function. However, it is generally recommended to use this function whenever working with URIs to ensure their validity and consistency.
+There are no prerequisites for using the `sanitizeUri` function.
 
 ## How to use this
 
-To use the `sanitizeUri` function, simply pass the URI you want to sanitize as the input parameter. The function will return the sanitized version of the URI.
+To use the `sanitizeUri` function, simply pass a URI as the input parameter. The function will return a sanitized version of the URI.
 
 Here is an example of how to use the `sanitizeUri` function:
 
@@ -33,8 +26,8 @@ const sanitizedUri = sanitizeUri(uri);
 console.log(sanitizedUri); // Output: https://www.example.com
 ```
 
-## Conclusion
+## Additional notes
 
-The `sanitizeUri` function is a useful tool for ensuring that URIs are in a consistent and valid format. This can be important for various reasons, such as ensuring proper formatting, preventing security vulnerabilities, and facilitating the parsing and processing of URIs.
+The `sanitizeUri` function is a simple function that can be used to improve the consistency and safety of URIs. However, it is important to note that the function does not perform any validation on the URI. For example, the function does not check to see if the URI is a valid URL or if it points to a valid resource.
   
   
