@@ -4,70 +4,48 @@
 
 ## What does this do?
 
-The `checkLink` method checks if a given URL is valid and returns the HTTP status code.
+The `checkLink` method checks if a given URL returns a valid HTTP status code.
 
 ## Why should I use this?
 
-The `checkLink` method can be used to validate URLs before using them in your code. This can help you to avoid errors and ensure that your code is working properly.
+This method can be used to validate that a URL is valid and accessible, and to ensure that it returns the expected HTTP status code. This can be useful for testing web applications and APIs, or for monitoring the availability of external resources.
 
 ## Prerequisites
 
-There are no prerequisites for using the `checkLink` method.
+To use the `checkLink` method, you will need to have the following:
+
+* A valid URL to check.
+* A list of expected HTTP status codes.
 
 ## How to use this
 
-To use the `checkLink` method, you must provide a URL. The URL can be specified as a string or as a `URL` object.
+To use the `checkLink` method, simply call the method with the following parameters:
 
-The `checkLink` method will return a `Promise` that resolves to an object with the following properties:
+* `url`: The URL to check.
+* `statusCodes`: A list of expected HTTP status codes.
 
-* `url`: The URL that was checked.
-* `statusCode`: The HTTP status code of the URL.
-* `success`: A boolean value indicating whether the URL is valid.
+The method will return a result object with the following properties:
 
-The following code sample shows you how to use the `checkLink` method:
+* `status`: The status of the request. This can be either "PASS" or "FAIL".
+* `description`: A description of the result. This will include the HTTP status code that was returned, and any errors that occurred.
 
-```js
-const url = 'https://www.google.com';
+Here is an example of how to use the `checkLink` method:
 
-checkLink(url).then((result) => {
-  console.log(result);
-});
 ```
+const result = await checkLink("https://www.google.com", [200]);
 
-The output of the code sample will be:
-
-```json
-{
-  "url": "https://www.google.com",
-  "statusCode": 200,
-  "success": true
+if (result.status === "PASS") {
+  console.log("The URL is valid and accessible.");
+} else {
+  console.log("The URL is invalid or inaccessible.");
 }
 ```
 
-## Additional information
+## Additional notes
 
-The `checkLink` method can also be used to check the status of a URL that is behind a firewall or proxy. To do this, you must provide the username and password for the firewall or proxy.
-
-The following code sample shows you how to use the `checkLink` method to check the status of a URL that is behind a firewall or proxy:
-
-```js
-const url = 'https://www.google.com';
-const username = 'myUsername';
-const password = 'myPassword';
-
-checkLink(url, username, password).then((result) => {
-  console.log(result);
-});
-```
-
-The output of the code sample will be:
-
-```json
-{
-  "url": "https://www.google.com",
-  "statusCode": 200,
-  "success": true
-}
-```
+* The `checkLink` method can be used to check any type of URL, including HTTP, HTTPS, and FTP URLs.
+* The method will automatically follow redirects.
+* The method will timeout after 10 seconds.
+* The method can be used in both synchronous and asynchronous code.
   
   
