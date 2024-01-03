@@ -1,39 +1,30 @@
 
   
-   # **File Type Detection**
+   # **File Type**
 
 ## What does this do?
 
-The `fileType` variable is used to detect the file type of a given file. This is done by checking if the file extension matches any of the extensions specified in the `config.fileTypes` array. If a match is found, the corresponding file type object is returned.
+The `fileType` constant is used to find the file type that corresponds to the given file extension. This is done by iterating over the list of file types and checking if the extension is included in the list of extensions for each file type.
 
 ## Why should I use this?
 
-File type detection is useful for a variety of purposes, such as:
-
-* Determining how to process a file
-* Displaying the correct icon for a file
-* Providing information about a file
+The `fileType` constant is useful for determining the type of file that is being processed. This information can be used to perform different operations on the file, such as opening it with the appropriate application or converting it to a different format.
 
 ## Prerequisites
 
-There are no prerequisites for using this code.
+There are no prerequisites for using the `fileType` constant.
 
 ## How to use this
 
-To use this code, simply pass the file extension to the `fileType` variable. The function will then return the corresponding file type object, or `null` if no match is found.
-
-Here is an example of how to use this code:
+To use the `fileType` constant, simply import it from the `doc-detective-core` module and then use it to find the file type that corresponds to the given file extension.
 
 ```javascript
-const fileType = config.fileTypes.find((fileType) =>
-  fileType.extensions.includes(extension)
-);
+const { fileType } = require('doc-detective-core');
 
-if (fileType) {
-  // Do something with the file type
-} else {
-  // No matching file type found
-}
+const extension = 'txt';
+const fileType = fileType.find((fileType) => fileType.extensions.includes(extension));
+
+console.log(fileType); // { name: 'Text File', extensions: ['.txt'] }
 ```
   
   
