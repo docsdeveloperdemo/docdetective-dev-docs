@@ -4,48 +4,81 @@
 
 ## What does this do?
 
-The `suggest` method returns a list of suggested actions for the user. These actions can be used to help the user complete their task more quickly and easily.
+The `suggest` method suggests potential matches for a given query. It takes a query string and a list of documents as input, and returns a list of suggested matches. Each suggested match includes the document title, a snippet of the document text that contains the query string, and a link to the document.
 
 ## Why should I use this?
 
-The `suggest` method can be used to improve the user experience by providing them with helpful suggestions. This can help to reduce the amount of time that the user spends searching for the information that they need.
+The `suggest` method can be used to improve the user experience by providing users with a list of potential matches for their queries. This can help users to find the information they are looking for more quickly and easily.
 
 ## Prerequisites
 
-There are no prerequisites for using the `suggest` method.
+In order to use the `suggest` method, you must have a list of documents that you want to search. These documents can be in any format, but they must be indexed in order to be searchable.
 
 ## How to use this
 
-To use the `suggest` method, you must first create a `Suggest` object. You can then use the `suggest` method to return a list of suggested actions.
-
-The following code sample shows you how to use the `suggest` method:
+To use the `suggest` method, you can use the following syntax:
 
 ```
-const suggest = new Suggest();
-
-const actions = suggest.suggest();
-
-actions.forEach((action) => {
-  console.log(action);
-});
+suggest(query, documents)
 ```
 
-The output of the code sample will be a list of suggested actions. Each action will be represented by a string.
+The `query` parameter is a string that contains the query that you want to search for. The `documents` parameter is a list of documents that you want to search.
+
+The `suggest` method will return a list of suggested matches. Each suggested match will include the following information:
+
+* The document title
+* A snippet of the document text that contains the query string
+* A link to the document
+
+You can use the suggested matches to improve the user experience by providing users with a list of potential matches for their queries. This can help users to find the information they are looking for more quickly and easily.
 
 ## Example
 
-The following code sample shows you how to use the `suggest` method to provide suggestions for a user who is searching for a product.
+The following example shows how to use the `suggest` method to search for a query in a list of documents:
 
 ```
-const suggest = new Suggest();
+const documents = [
+  {
+    title: "Document 1",
+    text: "This is the first document."
+  },
+  {
+    title: "Document 2",
+    text: "This is the second document."
+  },
+  {
+    title: "Document 3",
+    text: "This is the third document."
+  }
+];
 
-const actions = suggest.suggest('product');
+const query = "document";
 
-actions.forEach((action) => {
-  console.log(action);
-});
+const suggestedMatches = suggest(query, documents);
+
+console.log(suggestedMatches);
 ```
 
-The output of the code sample will be a list of suggested products. Each product will be represented by a string.
+The output of the above example would be the following:
+
+```
+[
+  {
+    title: "Document 1",
+    snippet: "This is the first document.",
+    link: "/document-1"
+  },
+  {
+    title: "Document 2",
+    snippet: "This is the second document.",
+    link: "/document-2"
+  },
+  {
+    title: "Document 3",
+    snippet: "This is the third document.",
+    link: "/document-3"
+  }
+]
+```
   
   
