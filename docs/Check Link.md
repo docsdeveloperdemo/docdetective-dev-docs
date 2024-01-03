@@ -1,65 +1,39 @@
 
   
-   # **Check Link**
+   # **checkLink**
 
 ## What does this do?
 
-The `checkLink` method checks if a given URL is valid and returns the HTTP status code.
+The `checkLink` method checks if a given URL is valid and returns the status code of the URL.
 
 ## Why should I use this?
 
-The `checkLink` method can be used to validate URLs before using them in your code. This can help you to avoid errors and ensure that your code is working properly.
+This method can be used to check if a URL is valid before attempting to access it. This can be useful for preventing errors and improving the user experience.
 
 ## Prerequisites
 
-There are no prerequisites for using the `checkLink` method.
+There are no prerequisites for using this method.
 
 ## How to use this
 
-To use the `checkLink` method, you must provide a URL. The URL can be specified as a string or as a `URL` object.
+To use this method, simply pass the URL you want to check as the first argument. The method will then return the status code of the URL.
 
-The `checkLink` method will return a `Promise` that resolves to an object containing the following properties:
+Here is an example of how to use this method:
 
-* `url`: The URL that was checked.
-* `statusCode`: The HTTP status code that was returned by the server.
-* `success`: A boolean value indicating whether the URL is valid.
+```
+const checkLink = require('doc-detective-core').checkLink;
 
-The following code sample shows you how to use the `checkLink` method:
+const url = 'https://www.google.com';
 
-```javascript
-const {checkLink} = require('@google-cloud/doc-detective-core');
-
-async function checkLink() {
-  const url = 'https://www.google.com';
-
-  const result = await checkLink(url);
-
-  console.log(result);
-}
-
-checkLink();
+checkLink(url).then((res) => {
+  console.log(res.statusCode); // 200
+});
 ```
 
-## Example
+## Output
 
-The following code sample shows you how to use the `checkLink` method to check if a URL is valid:
+The output of this method is a Promise that resolves to an object with the following properties:
 
-```javascript
-const {checkLink} = require('@google-cloud/doc-detective-core');
-
-async function checkLink() {
-  const url = 'https://www.google.com';
-
-  const result = await checkLink(url);
-
-  if (result.success) {
-    console.log('The URL is valid.');
-  } else {
-    console.log('The URL is not valid.');
-  }
-}
-
-checkLink();
-```
+* `statusCode`: The status code of the URL.
   
   
