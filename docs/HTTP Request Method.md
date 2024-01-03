@@ -4,69 +4,66 @@
 
 ## What does this do?
 
-The `httpRequest` method performs an HTTP request and validates the response status code and data.
+The `httpRequest` method is used to make an HTTP request to a specified URL. It takes a URL and an optional options object as arguments. The options object can be used to specify the HTTP method, headers, and body of the request.
 
 ## Why should I use this?
 
-The `httpRequest` method can be used to test the functionality of an HTTP endpoint by sending a request and validating the response. This can be useful for testing the behavior of a web service or API.
+The `httpRequest` method is a convenient way to make HTTP requests from your code. It can be used to fetch data from a web server, submit data to a web service, or perform other HTTP operations.
 
 ## Prerequisites
 
-Before using the `httpRequest` method, you must have the following:
+Before you can use the `httpRequest` method, you must have the following:
 
-* An HTTP endpoint to test
-* A valid request payload
-* A list of expected status codes
+* A valid URL
+* An optional options object
 
 ## How to use this
 
-To use the `httpRequest` method, you must provide the following information:
+To use the `httpRequest` method, simply call it with the following arguments:
 
-* The URL of the HTTP endpoint
-* The HTTP method to use (e.g., GET, POST, PUT, DELETE)
-* The request payload (if applicable)
-* A list of expected status codes
+* URL: The URL of the web resource you want to access.
+* Options: An optional options object.
 
-The `httpRequest` method will then perform the HTTP request and validate the response status code and data. If the response status code is not one of the expected status codes, the method will return an error.
+The following example shows how to use the `httpRequest` method to fetch data from a web server:
 
-## Example
+```javascript
+const httpRequest = require('doc-detective-core/src/tests/httpRequest');
 
-The following example shows how to use the `httpRequest` method to test the functionality of a web service:
+const url = 'https://www.example.com';
 
-```
-const step = {
-  url: "https://example.com/api/v1/users",
-  method: "GET",
-  statusCodes: [200],
-  responseData: {
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-  },
-};
-
-const result = httpRequest(step);
-
-if (result.status === "PASS") {
-  console.log("The HTTP request was successful.");
-} else {
-  console.log("The HTTP request failed.");
-}
+httpRequest(url, (error, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(response);
+  }
+});
 ```
 
-## Additional information
+## Output
 
-The `httpRequest` method can also be used to set environment variables from the response data. This can be useful for storing information from the response in the environment for use in subsequent steps.
+The output of the `httpRequest` method is a Promise that resolves to an object with the following properties:
 
-To set environment variables from the response data, you must provide the following information:
+* `statusCode`: The HTTP status code of the response.
+* `headers`: The HTTP headers of the response.
+* `body`: The body of the response.
 
-* The name of the environment variable
-* A jq filter to extract the value from the response data
+The following example shows how to access the properties of the response object:
 
-The `httpRequest` method will then use the jq filter to extract the value from the response data and set the environment variable.
+```javascript
+const httpRequest = require('doc-detective-core/src/tests/httpRequest');
 
-## Conclusion
+const url = 'https://www.example.com';
 
-The `httpRequest` method is a powerful tool for testing the functionality of HTTP endpoints. It can be used to validate the response status code and data, and to set environment variables from the response data.
+httpRequest(url, (error, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(response.statusCode);
+    console.log(response.headers);
+    console.log(response.body);
+  }
+});
+```
   
   
