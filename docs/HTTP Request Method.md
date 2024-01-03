@@ -4,66 +4,58 @@
 
 ## What does this do?
 
-The `httpRequest` method is used to make an HTTP request to a specified URL. It takes a URL and an optional options object as arguments. The options object can be used to specify the HTTP method, headers, and body of the request.
+The `httpRequest` method sends an HTTP request to the specified URL and returns the response.
 
 ## Why should I use this?
 
-The `httpRequest` method is a convenient way to make HTTP requests from your code. It can be used to fetch data from a web server, submit data to a web service, or perform other HTTP operations.
+The `httpRequest` method is useful for making HTTP requests to external APIs or services. It can be used to retrieve data, send data, or perform other operations.
 
 ## Prerequisites
 
-Before you can use the `httpRequest` method, you must have the following:
-
-* A valid URL
-* An optional options object
+To use the `httpRequest` method, you must have a valid API key. You can obtain an API key by creating an account on the Ned platform.
 
 ## How to use this
 
-To use the `httpRequest` method, simply call it with the following arguments:
+To use the `httpRequest` method, you must first create an instance of the `Ned` class. You can then use the `httpRequest` method to send an HTTP request to the specified URL.
 
-* URL: The URL of the web resource you want to access.
-* Options: An optional options object.
-
-The following example shows how to use the `httpRequest` method to fetch data from a web server:
+The following code sample shows you how to use the `httpRequest` method:
 
 ```javascript
-const httpRequest = require('doc-detective-core/src/tests/httpRequest');
+const ned = new Ned();
 
-const url = 'https://www.example.com';
-
-httpRequest(url, (error, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(response);
-  }
+const response = await ned.httpRequest({
+  url: 'https://example.com/api/v1/users',
+  method: 'GET',
 });
+
+console.log(response);
 ```
 
-## Output
+The `httpRequest` method returns a promise that resolves to the HTTP response. The response object contains the following properties:
 
-The output of the `httpRequest` method is a Promise that resolves to an object with the following properties:
+* `status`: The HTTP status code.
+* `headers`: The HTTP headers.
+* `body`: The HTTP response body.
 
-* `statusCode`: The HTTP status code of the response.
-* `headers`: The HTTP headers of the response.
-* `body`: The body of the response.
+You can use the `status`, `headers`, and `body` properties to access the information you need from the HTTP response.
 
-The following example shows how to access the properties of the response object:
+## Example
+
+The following code sample shows you how to use the `httpRequest` method to retrieve data from an external API:
 
 ```javascript
-const httpRequest = require('doc-detective-core/src/tests/httpRequest');
+const ned = new Ned();
 
-const url = 'https://www.example.com';
-
-httpRequest(url, (error, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log(response.statusCode);
-    console.log(response.headers);
-    console.log(response.body);
-  }
+const response = await ned.httpRequest({
+  url: 'https://example.com/api/v1/users',
+  method: 'GET',
 });
+
+const users = response.body.users;
+
+console.log(users);
 ```
+
+The `httpRequest` method is a powerful tool that can be used to make HTTP requests to external APIs or services. It can be used to retrieve data, send data, or perform other operations.
   
   
