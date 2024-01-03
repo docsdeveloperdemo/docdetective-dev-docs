@@ -1,81 +1,60 @@
 
   
-   # **Suggest**
+   # **suggest**
 
 ## What does this do?
 
-The `suggest` method is used to suggest a list of possible completions for a given input string. This can be useful for providing auto-complete functionality in a text editor or IDE, or for generating suggestions for search queries.
+The `suggest` method is used to suggest a list of potential matches for a given query. The matches are based on the contents of the provided `index`.
 
 ## Why should I use this?
 
-The `suggest` method can be used to improve the user experience by providing helpful suggestions for completing a task. This can save time and effort for the user, and can also help to prevent errors.
+The `suggest` method can be used to provide users with a list of potential matches for a given query. This can be helpful for users who are not sure exactly what they are looking for, or who want to explore different options.
 
 ## Prerequisites
 
-Before using the `suggest` method, you must first create a `SuggestClient`. This can be done by calling the `SuggestClient.create()` method.
+Before using the `suggest` method, you must first create an index. This can be done using the `createIndex` method.
 
 ## How to use this
 
-To use the `suggest` method, you must first create a `SuggestRequest` object. This object contains the input string for which you want to generate suggestions. You can then call the `suggest` method on the `SuggestClient` object, passing in the `SuggestRequest` object as an argument. The `suggest` method will return a `SuggestResponse` object, which contains a list of suggested completions.
+To use the `suggest` method, you must first create an instance of the `Suggest` class. This can be done by calling the `Suggest` constructor.
 
-The following code sample shows you how to use the `suggest` method:
+Once you have created an instance of the `Suggest` class, you can call the `suggest` method. The `suggest` method takes two parameters:
 
-```javascript
-const {SuggestClient} = require('@google-cloud/doc-detective');
+* `query`: The query to search for.
+* `options`: An optional object that can be used to specify additional options for the search.
 
-const client = new SuggestClient();
+The `suggest` method will return a list of potential matches for the given query. The matches will be sorted by relevance, with the most relevant matches appearing first.
 
-const request = {
-  input: 'Hello, w',
-};
-
-client.suggest(request, (err, response) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-
-  const suggestions = response.suggestions;
-
-  suggestions.forEach(suggestion => {
-    console.log(suggestion.completion);
-  });
-});
-```
-
-## Example
-
-The following code sample shows you how to use the `suggest` method to generate suggestions for a search query:
+Here is an example of how to use the `suggest` method:
 
 ```javascript
-const {SuggestClient} = require('@google-cloud/doc-detective');
+const suggest = new Suggest(index);
 
-const client = new SuggestClient();
+const matches = suggest.suggest('query');
 
-const request = {
-  input: 'How to',
-};
-
-client.suggest(request, (err, response) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-
-  const suggestions = response.suggestions;
-
-  suggestions.forEach(suggestion => {
-    console.log(suggestion.completion);
-  });
-});
+console.log(matches);
 ```
 
-The output of the above code sample would be a list of suggested completions for the search query "How to". For example, the output might include the following suggestions:
+## Output
 
-* How to write a resume
-* How to cook a chicken
-* How to change a tire
-* How to build a house
-* How to invest in stocks
+The `suggest` method will return a list of potential matches for the given query. The matches will be sorted by relevance, with the most relevant matches appearing first.
+
+Each match will contain the following information:
+
+* `text`: The text of the match.
+* `score`: The relevance score of the match.
+* `indexInFile`: The index of the match in the file.
+* `line`: The line number of the match in the file.
+
+Here is an example of a match:
+
+```json
+{
+  "text": "Hello, world!",
+  "score": 0.9,
+  "indexInFile": 10,
+  "line": 2
+}
+```
   
   
