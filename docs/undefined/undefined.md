@@ -4,42 +4,24 @@
 
 ## What does this do?
 
-The `remoteJSON.forEach` method iterates over each element in the `remoteJSON` array and executes the provided callback function for each element. The callback function takes a single argument, which is the current element in the array.
-
-In this case, the callback function is an anonymous function that checks if the `id` property of the current element in the `remoteJSON` array matches the `id` property of the `statementJson` object. If the `id` properties match, the `idMatch` variable is set to `true`.
+The `forEach` method in `analysis.js` iterates over each test in the `spec.tests` array and checks if the `id` property of the test matches the `id` property of the `statementJson` object. If a match is found, the `idMatch` variable is set to `true`.
 
 ## Why should I use this?
 
-The `remoteJSON.forEach` method can be used to iterate over an array and perform a specific action for each element in the array. In this case, the callback function is used to check if the `id` property of the current element in the `remoteJSON` array matches the `id` property of the `statementJson` object. This can be useful for finding a specific element in an array or for performing a specific action for each element in an array.
+This code is used to check if a test with a specific ID exists in the `spec.tests` array. This information can be used to determine whether or not to perform certain actions or calculations based on the presence or absence of the test.
 
-## Prequsites
+## Prerequisites
 
-There are no prerequisites for using the `remoteJSON.forEach` method.
+Before using this code, you must have a basic understanding of JavaScript arrays and objects. You should also be familiar with the concept of iterating over an array using the `forEach` method.
 
 ## How to use this
 
-To use the `remoteJSON.forEach` method, you simply call the method on the `remoteJSON` array and pass in a callback function as the first argument. The callback function will be executed for each element in the array.
+To use this code, you can simply call the `forEach` method on the `spec.tests` array and pass in a callback function as the argument. The callback function will be called for each element in the array, and you can use it to perform any necessary checks or calculations.
 
-In the example code, the `remoteJSON.forEach` method is used to iterate over the `remoteJSON` array and check if the `id` property of the current element in the array matches the `id` property of the `statementJson` object. If the `id` properties match, the `idMatch` variable is set to `true`.
+In the example code, the callback function checks if the `id` property of the test matches the `id` property of the `statementJson` object. If a match is found, the `idMatch` variable is set to `true`.
 
-Here is an example of how you could use the `remoteJSON.forEach` method to iterate over an array and print the value of each element to the console:
+## Conclusion
 
-```javascript
-const numbers = [1, 2, 3, 4, 5];
-
-numbers.forEach((number) => {
-  console.log(number);
-});
-```
-
-This code would print the following output to the console:
-
-```
-1
-2
-3
-4
-5
-```
+The `forEach` method is a powerful tool that can be used to iterate over arrays and perform various operations on each element. In the example code, the `forEach` method is used to check if a test with a specific ID exists in the `spec.tests` array. This information can be used to determine whether or not to perform certain actions or calculations based on the presence or absence of the test.
   
   
