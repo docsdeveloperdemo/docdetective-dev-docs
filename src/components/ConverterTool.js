@@ -76,7 +76,7 @@ function convertMarkdownTableToHtml(htmlString) {
   const tablePattern = /\|(?:.*\|\<)+(?:.*\|)/g;
 
   // Pattern to match the header row in the table
-  const headerPattern = /\|(.*\|)(?=\<br>\|[- ]+\|)/g;
+  const headerPattern = /\|(.*\|)(?=\\`<br>`\|[- ]+\|)/g;
 
   // Pattern to match each row in the table
   const rowPattern = /\|(.*)\|/g;
@@ -107,7 +107,7 @@ function convertMarkdownTableToHtml(htmlString) {
       htmlTable += `<tr>${htmlRow}</tr>`;
     }
    
-    let markdownTables = markdownTable.split(headerMarkdown)[1].split("<br>");
+    let markdownTables = markdownTable.split(headerMarkdown)[1].split("\`<br>`");
    
     markdownTables.shift();
     markdownTables.shift();
@@ -474,7 +474,7 @@ var parser = function () {
     markdown = markdown.replace(/^###### (.*)$/gm, "<h6 id='$1'>$1</h6>");
 
     markdown = markdown.replace(/(?<=^|\r\n|\n|\r)(\r\n|\n|\r)/g, "<p></p>");
-    markdown = markdown.replace(/(?<!<\/p>)\n([^\n<]+)(?!\S)/g, "<br>$1");
+    markdown = markdown.replace(/(?<!<\/p>)\n([^\n<]+)(?!\S)/g, "\`<br>`$1");
 
     markdown = markdown.replace(
       /\%ref\/\|/g,

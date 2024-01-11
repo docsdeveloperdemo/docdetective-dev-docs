@@ -62,9 +62,9 @@ const JsonToTable = ({ data, title, columns }) => {
           <TableRow key={key}>
             <TableCell className="font-medium">
               <h3>{key}</h3>
-              <br></br>
+              \`<br>`</br>
               {markdownResult}
-              <br></br>
+              \`<br>`</br>
               <p>Other Text that is important</p>
             </TableCell>
           </TableRow>
